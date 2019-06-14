@@ -1,0 +1,33 @@
+---
+title: "ReadNetCDF"
+author: "Angela Kim"
+date: "October 1, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load the Libraries and Read the Data 
+You'll need the following libraries: 
+```{r message=FALSE}
+library(ncdf4)
+library(chron) 
+library(RColorBrewer) 
+library(lattice) 
+```
+
+Make sure that the working directory is set to where your NetCDF file is saved. 
+Read the data using the nc_open function. We'll be working with the ACCESS1-0 RCP4.5 data in this example. 
+```{r}
+ncin <- nc_open("tasmax_ACCESS1-0rcp45.nc")
+```
+
+## Extract Data from the NetCDF File 
+Now tha the NetCDF file is loaded in R, we can extract the information we need.
+
+Extract longitude and latitude data. 
+```{r}
+lon <- ncvar_get(ncin,"lon") 
+```
